@@ -45,7 +45,7 @@ var projects = {
 var bio = {
 	"name": "Tiana Tucker",
 	"role": "UX Designer & Front-End Developer",
-	"contact": {
+	"contacts": {
 		"mobile": "202-643-6008",
 		"email": "tianatucker@gmail.com",
 		"github": "tianatucker",
@@ -129,7 +129,7 @@ projects.display = function() {
 }
 
 function displayEducation() {
-	for (school in education.schools, education.onlineCourse) {
+	for (school in education.schools) {
 		$("#education").append(HTMLschoolStart);
 
 		var formattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
@@ -146,16 +146,32 @@ function displayEducation() {
 		var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
 		$(".education-entry:last").append(formattedMajor);
 
+	}
+}
+
+function displayOnlineCourse() {
+	for (onlineCourse in education.onlineCourses) {
+		$("#education").append(HTMLonlineClasses);
+
 		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourse[school].title);
 		var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourse[school].school);
 		var formattedTitleSchool = formattedTitle + formattedSchool;
 		$(".education-entry:last").append(formattedTitleSchool);
+
+		var formattedDates = HTMLonlineDates.replace("%data%", education.onlineCourse[school].dates);
+		$(".education-entry:last").append(formattedDates);
+
+		var formattedWebsite = HTMLonlineURL.replace("%data%", education.onlineCourse[school].dates);
+		$(".education-entry:last").append(formattedWebsite);
 	}
 }
+
 
 displayWork();
 projects.display();
 displayEducation();
+displayOnlineCourse();
+
 
 $(document).click(function(loc){
 	var x = loc.pageX;
