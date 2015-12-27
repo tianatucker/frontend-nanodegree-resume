@@ -104,6 +104,9 @@ a {
   display: none;
 }
 
+#skills {
+  display: list-item;
+}
 .orange {
   background-color: #f5ae23;
 }
@@ -162,6 +165,7 @@ img {
 
 span {
   padding: 5px;
+  color: #fff;
 }
 
 #lets-connect {
