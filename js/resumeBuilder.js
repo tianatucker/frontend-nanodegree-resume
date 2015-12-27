@@ -56,7 +56,7 @@ var bio = {
 	"skills": [
 	 "design", "wireframing", "prototyping"
 	],
-	"bioPic": "images/fry.jpg"
+	"bioPic": "images/Tiana_web_circle.jpeg"
 }
 
 var education = {
@@ -69,7 +69,7 @@ var education = {
 			"dates": "August 2007 - May 2011"
 		}
 	],
-	"onlineCourse": [
+	"onlineCourses": [
 		{
 			"title": "User Experience Design Immersive",
 			"school": "General Assembly",
@@ -85,6 +85,46 @@ var education = {
 	]
 }
 
+function displayBio() {
+	var formattedRole =	HTMLheaderRole.replace("%data%", bio.role);
+	$("#header").prepend(formattedRole);
+
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	$("#header").prepend(formattedName);
+
+	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	$("#topContacts").append(formattedMobile);
+
+	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	$("#topContacts").append(formattedEmail);
+
+	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+	$("#topContacts").append(formattedGithub);
+
+	var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	$("#topContacts").append(formattedTwitter);
+
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	$("#topContacts").append(formattedLocation);
+
+	var formattedBiopic = HTMLbioPic.replace("%data%", bio.bioPic);
+	$("#header").append(formattedBiopic);
+
+	var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	$("#header").append(formattedWelcomeMsg);
+
+	$("#header").append(HTMLskillsStart);
+
+	var formattedSkills = HTMLskills.replace("%data%", bio.skills);
+	$("#header").append(formattedSkills);
+
+	$("#footerContacts").append(formattedMobile);
+	$("#footerContacts").append(formattedEmail);
+	$("#footerContacts").append(formattedGithub);
+	$("#footerContacts").append(formattedTwitter);
+	$("#footerContacts").append(formattedLocation);
+
+}
 
 function displayWork () {
 for (job in work.jobs){
@@ -150,27 +190,28 @@ function displayEducation() {
 }
 
 function displayOnlineCourse() {
-	for (onlineCourse in education.onlineCourses) {
 		$("#education").append(HTMLonlineClasses);
+	for (onlineCourse in education.onlineCourses) {
+		$("#education").append(HTMLschoolStart);
 
-		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourse[school].title);
-		var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourse[school].school);
+		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[onlineCourse].title);
+		var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[onlineCourse].school);
 		var formattedTitleSchool = formattedTitle + formattedSchool;
 		$(".education-entry:last").append(formattedTitleSchool);
 
-		var formattedDates = HTMLonlineDates.replace("%data%", education.onlineCourse[school].dates);
+		var formattedDates = HTMLonlineDates.replace("%data%", education.onlineCourses[onlineCourse].dates);
 		$(".education-entry:last").append(formattedDates);
 
-		var formattedWebsite = HTMLonlineURL.replace("%data%", education.onlineCourse[school].dates);
+		var formattedWebsite = HTMLonlineURL.replace("%data%", education.onlineCourses[onlineCourse].url);
 		$(".education-entry:last").append(formattedWebsite);
 	}
 }
-
 
 displayWork();
 projects.display();
 displayEducation();
 displayOnlineCourse();
+displayBio();
 
 
 $(document).click(function(loc){
